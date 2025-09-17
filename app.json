@@ -1,0 +1,57 @@
+{
+  "expo": {
+    "plugins": [
+      [
+        "@react-native-tvos/config-tv",
+        {
+          "appleTVImages": {
+            "icon": "./assets/images/icon-1280x768.png",
+            "iconSmall": "./assets/images/icon-400x240.png",
+            "iconSmall2x": "./assets/images/icon-800x480.png",
+            "topShelf": "./assets/images/icon-1920x720.png",
+            "topShelf2x": "./assets/images/icon-3840x1440.png",
+            "topShelfWide": "./assets/images/icon-2320x720.png",
+            "topShelfWide2x": "./assets/images/icon-4640x1440.png"
+          }
+        }
+      ],
+      [
+        "expo-build-properties",
+        {
+          "ios": {
+            "useFrameworks": "static"
+          }
+        }
+      ],
+      "expo-router",
+      "expo-font",
+      "react-native-bottom-tabs"
+    ],
+    "experiments": {
+      "typedRoutes": true
+    },
+    "name": "IssuesSample",
+    "slug": "IssuesSample",
+    "scheme": "IssuesSample",
+    "platforms": [
+      "ios"
+    ],
+    "icon": "./assets/images/icon-760x760.png",
+    "version": "1.0.0",
+    "extra": {
+      "router": {
+        "origin": false
+      }
+    },
+    "splash": {
+      "image": "./assets/images/icon-1920x720.png"
+    },
+    "ios": {
+      "infoPlist": {
+        "CFBundleLocalizations": ["en", "ja"]
+      },
+      "newArchEnabled": true,
+      "bundleIdentifier": "com.anonymous.IssuesSample"
+    }
+  }
+}
