@@ -1,5 +1,12 @@
-import React from 'react';
-import { Image, StyleSheet, Pressable, Text } from 'react-native';
+import React, { useCallback } from 'react';
+import {
+  Image,
+  StyleSheet,
+  Pressable,
+  Text,
+  useTVEventHandler,
+  HWEvent,
+} from 'react-native';
 import { useRouter } from 'expo-router';
 import { scale } from 'react-native-size-matters';
 import ParallaxScrollView from '@/components/ParallaxScrollView';
@@ -7,6 +14,27 @@ import { ThemedView } from '@/components/ThemedView';
 
 export default function HomeScreen() {
   const router = useRouter();
+
+  const tvhandler = useCallback((evt: HWEvent) => {
+    if (evt && evt.eventType) {
+      switch (evt.eventType) {
+        case 'right':
+          console.log(`Right button pressed in home screen`);
+          break;
+        case 'left':
+          console.log(`Left button pressed in home screen`);
+          break;
+        case 'menu':
+          console.log(`Menu button pressed in home screen`);
+          break;
+        default:
+          break;
+      }
+    }
+  }, []);
+
+  // useScopedTVHandler(true, "menuDetect", tvhandler);
+  useTVEventHandler(tvhandler);
 
   return (
     <ParallaxScrollView

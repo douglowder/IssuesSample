@@ -17,13 +17,13 @@ export default function MenuDetectScreen() {
     if (evt && evt.eventType) {
       switch (evt.eventType) {
         case 'right':
-          console.log(`Right button pressed Detected`);
+          console.log(`Right button pressed in menudetect screen`);
           break;
         case 'left':
-          console.log(`Left button pressed Detected`);
+          console.log(`Left button pressed in menudetect screen`);
           break;
         case 'menu':
-          console.log(`Menu button pressed Detected`);
+          console.log(`Menu button pressed in menudetect screen`);
           break;
         default:
           break;
