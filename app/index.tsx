@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from 'react';
 import { Image, StyleSheet, Pressable, Text } from 'react-native';
 import { useRouter } from 'expo-router';
 import { scale } from 'react-native-size-matters';

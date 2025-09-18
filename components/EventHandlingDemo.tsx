@@ -157,8 +157,8 @@ const PressableButton = (props: PressableProps & ButtonProps) => {
             {pressed
               ? `${props.title} pressed`
               : focused
-              ? `${props.title} focused`
-              : props.title}
+                ? `${props.title} focused`
+                : props.title}
           </ThemedText>
         );
       }}

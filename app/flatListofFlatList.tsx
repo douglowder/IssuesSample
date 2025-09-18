@@ -1,23 +1,18 @@
-import { 
+import {
   FlatList,
   View,
   Text,
   StyleSheet,
-  TVFocusGuideView, 
-} from "react-native";
-import React, { 
-  useState, 
-  useRef, 
-  useCallback, 
-} from "react";
+  TVFocusGuideView,
+} from 'react-native';
+import React, { useState, useRef, useCallback } from 'react';
 
-import { CategoryData, Data } from "@/components/category/data";
+import { CategoryData, Data } from '@/components/category/data';
 
-import { CategoryList } from "@/components/category/CategoryList";
-const DISPLAY_NAME = "CATEGORY LIST";
+import { CategoryList } from '@/components/category/CategoryList';
+const DISPLAY_NAME = 'CATEGORY LIST';
 
 export default function FlatListofFlatListScreen() {
-
   const genreRef = useRef<FlatList<any>>(null);
   const listRefs = useRef<FlatList<any>[]>([]);
 
@@ -40,7 +35,7 @@ export default function FlatListofFlatListScreen() {
         });
       }
     },
-    []  
+    [],
   );
 
   const renderItem = useCallback(
@@ -52,17 +47,19 @@ export default function FlatListofFlatListScreen() {
         scrollToFocusedItem={scrollToFocusedItem}
         focusedRowIndex={focusedRowIndex}
       />
-  ), [scrollToFocusedItem, focusedRowIndex]);
+    ),
+    [scrollToFocusedItem, focusedRowIndex],
+  );
 
   return (
     <View style={styles.container}>
-      { Data && Data?.length > 0 ? (
+      {Data && Data?.length > 0 ? (
         <TVFocusGuideView
           trapFocusLeft
           trapFocusRight
           trapFocusUp
           trapFocusDown
-          autoFocus 
+          autoFocus
         >
           <FlatList
             ref={genreRef}
@@ -85,14 +82,13 @@ export default function FlatListofFlatListScreen() {
       )}
     </View>
   );
-
-};
+}
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#252E33",
-    color: "black",
+    backgroundColor: '#252E33',
+    color: 'black',
   },
   blank: {
     width: '100%',
@@ -102,10 +98,10 @@ const styles = StyleSheet.create({
     paddingTop: 30,
     paddingBottom: 100,
     paddingRight: 50,
-    flexDirection: "row",
+    flexDirection: 'row',
   },
   headerText: {
     fontSize: 80,
-    color: "white",
+    color: 'white',
   },
 });

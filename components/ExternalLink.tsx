@@ -3,11 +3,13 @@ import * as Linking from 'expo-linking';
 import type { Href } from 'expo-router';
 import { type ComponentProps } from 'react';
 import { Platform, Pressable } from 'react-native';
+import React from 'react';
 
 const openBrowserAsync =
   Platform.isTV && Platform.OS === 'ios'
     ? async () => {}
-    : require('expo-web-browser').openBrowserAsync;
+    : // eslint-disable-next-line @typescript-eslint/no-require-imports
+      require('expo-web-browser').openBrowserAsync;
 
 type Props = Omit<ComponentProps<typeof Link>, 'href'> & {
   href: string;
@@ -18,7 +20,7 @@ function ExternalLinkMobile({ href, ...rest }: Props) {
     <Link
       target="_blank"
       {...rest}
-      href={href as Href<string>}
+      href={href as Href}
       onPress={async (event) => {
         if (Platform.OS !== 'web') {
           // Prevent the default behavior of linking to the default browser on native.
