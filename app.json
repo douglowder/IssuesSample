@@ -25,7 +25,8 @@
       ],
       "expo-router",
       "expo-font",
-      "react-native-bottom-tabs"
+      "react-native-bottom-tabs",
+      "expo-web-browser"
     ],
     "experiments": {
       "typedRoutes": true
@@ -48,7 +49,10 @@
     },
     "ios": {
       "infoPlist": {
-        "CFBundleLocalizations": ["en", "ja"]
+        "CFBundleLocalizations": [
+          "en",
+          "ja"
+        ]
       },
       "newArchEnabled": true,
       "bundleIdentifier": "com.anonymous.IssuesSample"
