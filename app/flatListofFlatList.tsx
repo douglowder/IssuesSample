@@ -10,6 +10,7 @@ import React, { useState, useRef, useCallback } from 'react';
 import { CategoryData, Data } from '@/components/category/data';
 
 import { CategoryList } from '@/components/category/CategoryList';
+import { useFocusEffect } from 'expo-router';
 const DISPLAY_NAME = 'CATEGORY LIST';
 
 export default function FlatListofFlatListScreen() {
@@ -17,6 +18,17 @@ export default function FlatListofFlatListScreen() {
   const listRefs = useRef<FlatList<any>[]>([]);
 
   const [focusedRowIndex, setFocusedRowIndex] = useState<number>(0);
+
+  const [screenFocused, setScreenFocused] = useState(false);
+
+  useFocusEffect(
+    useCallback(() => {
+      setScreenFocused(true);
+      return () => {
+        setScreenFocused(false);
+      };
+    }, []),
+  );
 
   const scrollToFocusedItem = useCallback(
     (rowIndex: number, columnIndex: number) => {
@@ -50,6 +62,10 @@ export default function FlatListofFlatListScreen() {
     ),
     [scrollToFocusedItem, focusedRowIndex],
   );
+
+  if (!screenFocused) {
+    return null;
+  }
 
   return (
     <View style={styles.container}>
