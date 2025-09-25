@@ -4,10 +4,10 @@ import {
   StyleSheet,
   Pressable,
   Text,
-  useTVEventHandler,
   HWEvent,
+  TVEventHandler,
 } from 'react-native';
-import { useRouter } from 'expo-router';
+import { useFocusEffect, useRouter } from 'expo-router';
 import { scale } from 'react-native-size-matters';
 import ParallaxScrollView from '@/components/ParallaxScrollView';
 import { ThemedView } from '@/components/ThemedView';
@@ -33,8 +33,16 @@ export default function HomeScreen() {
     }
   }, []);
 
-  // useScopedTVHandler(true, "menuDetect", tvhandler);
-  useTVEventHandler(tvhandler);
+  useFocusEffect(
+    useCallback(() => {
+      console.log(`Home screen focused`);
+      const subscription = TVEventHandler.addListener(tvhandler);
+      return () => {
+        console.log(`Home screen unfocused`);
+        subscription?.remove();
+      };
+    }, [tvhandler]),
+  );
 
   return (
     <ParallaxScrollView

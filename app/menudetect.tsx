@@ -1,12 +1,18 @@
 import React, { useCallback } from 'react';
 import Ionicons from '@expo/vector-icons/Ionicons';
-import { HWEvent, StyleSheet, useTVEventHandler } from 'react-native';
+import {
+  HWEvent,
+  StyleSheet,
+  TVEventHandler,
+  useTVEventHandler,
+} from 'react-native';
 import { scale } from 'react-native-size-matters';
 // import { useRouter } from 'expo-router';
 
 import ParallaxScrollView from '@/components/ParallaxScrollView';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
+import { useFocusEffect } from 'expo-router';
 
 // import { useScopedTVHandler } from '@/components/ScopedTVHandler';
 
@@ -31,8 +37,16 @@ export default function MenuDetectScreen() {
     }
   }, []);
 
-  // useScopedTVHandler(true, "menuDetect", tvhandler);
-  useTVEventHandler(tvhandler);
+  useFocusEffect(
+    useCallback(() => {
+      console.log(`MenuDetectScreen focused`);
+      const subscription = TVEventHandler.addListener(tvhandler);
+      return () => {
+        console.log(`MenuDetectScreen unfocused`);
+        subscription?.remove();
+      };
+    }, [tvhandler]),
+  );
 
   return (
     <ParallaxScrollView
