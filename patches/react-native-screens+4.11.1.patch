@@ -1,0 +1,31 @@
+diff --git a/node_modules/react-native-screens/ios/RNSScreenStack.mm b/node_modules/react-native-screens/ios/RNSScreenStack.mm
+index 99cb218..8bd5326 100644
+--- a/node_modules/react-native-screens/ios/RNSScreenStack.mm
++++ b/node_modules/react-native-screens/ios/RNSScreenStack.mm
+@@ -31,6 +31,11 @@
+ 
+ #import "UIView+RNSUtility.h"
+ 
++#if TARGET_OS_TV
++#import <React/RCTTVNavigationEventNotification.h>
++#import <React/RCTTVNavigationEventNotificationConstants.h>
++#endif
++
+ #ifdef RCT_NEW_ARCH_ENABLED
+ namespace react = facebook::react;
+ #endif // RCT_NEW_ARCH_ENABLED
+@@ -54,6 +59,14 @@ namespace react = facebook::react;
+ 
+ @implementation RNSNavigationController
+ 
++#if TARGET_OS_TV
++- (UIViewController *) popViewControllerAnimated:(BOOL) animated {
++  NSLog(@"RNSNavigationController: pop operation");
++  [[NSNotificationCenter defaultCenter] postNavigationPressEventWithType:RCTTVRemoteEventMenu keyAction:RCTTVRemoteEventKeyActionUnknown tag:nil target:nil];
++  return [super popViewControllerAnimated:animated];
++}
++#endif
++
+ #if !TARGET_OS_TV
+ - (UIViewController *)childViewControllerForStatusBarStyle
+ {
